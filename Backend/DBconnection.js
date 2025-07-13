@@ -1,14 +1,17 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const connectlogindb=async()=>{
-    try{
-        await mongoose.connect('mongodb://localhost:27017/studentdb');
+const connectlogindb = async () => { 
+    try {
+        await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
         console.log("login DB connected");
-    }
-    catch(err){
-        console.log("Error occured in conection loginform DB");
+    } catch (err) {
+        console.error("Error occurred while connecting to login DB", err);
         process.exit(1);
     }
-}
+};
 
-module.exports=connectlogindb;
+module.exports = connectlogindb;
