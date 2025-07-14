@@ -6,6 +6,7 @@ const connectdb=require('./DBconnection');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 require('dotenv').config();
+const PORT = process.env.PORT || 4000;
 
 connectdb();
 app.use(cors());
@@ -88,7 +89,7 @@ app.get('/getdetails',middleware,(req,res)=>{
 })
 
 
-app.listen(4000,(err)=>{
+app.listen(PORT,(err)=>{
     if(err){
         console.log("error in running the server 4000");
         return;
